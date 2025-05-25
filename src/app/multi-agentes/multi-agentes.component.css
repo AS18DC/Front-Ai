@@ -1,0 +1,145 @@
+.container-multi-agentes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #e9e9e9; /* Approximate background color */
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Or a similar sans-serif font */
+}
+
+.header-chat {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.chat-bubble {
+  background-color: #d3d3d3;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-content-multi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* For positioning the central title */
+}
+
+.title-multi {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 40px; /* Space above agent buttons */
+  font-weight: bold;
+}
+
+.agent-button-main {
+  background-color: #cce0ff; /* Light blue */
+  border: 1px solid #a9c5e7;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 25px; /* Oval shape */
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.agent-button-main.all-agents {
+  margin-top: 20px;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 20px 80px; /* Spacing between buttons, more horizontal gap */
+  align-items: center; /* Aligns items in the center of grid cells */
+  justify-items: center; /* Centers items horizontally in grid cells */
+  position: relative;
+  padding: 0 50px; /* Add padding to ensure space from title */
+}
+
+/* Position individual agent buttons using grid-area or adjust margins */
+.agents-grid .agent-button:nth-child(1) { /* Predicción de ventas */
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  justify-self: end; /* Align to the right of its cell */
+  margin-right: 10px; /* Adjust as needed */
+}
+.agents-grid .agent-button:nth-child(2) { /* Correlación de calidad */
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: start; /* Align to the left of its cell */
+  margin-left: 10px; /* Adjust as needed */
+}
+.agents-grid .agent-button:nth-child(3) { /* Predicción de producción */
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: end;
+  margin-right: 10px;
+}
+.agents-grid .agent-button:nth-child(4) { /* Gestión de mantenimiento */
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: start;
+  margin-left: 10px;
+}
+.agents-grid .agent-button:nth-child(5) { /* Predicción de compras */
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  justify-self: end;
+  margin-right: 10px;
+}
+.agents-grid .agent-button:nth-child(6) { /* Gestión de inventario */
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  justify-self: start;
+  margin-left: 10px;
+}
+
+
+.agent-button {
+  background-color: #d6d6ff; /* Light purple */
+  border: 1px solid #b0b0e0;
+  color: #333;
+  padding: 12px 18px;
+  border-radius: 25px; /* Oval shape */
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.85em;
+  line-height: 1.2;
+  min-width: 180px; /* Ensure buttons have some width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-multi {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px dashed #aaa; /* Dashed line */
+  margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.footer-multi .arrow {
+  flex-grow: 1;
+  height: 1px;
+  background-image: linear-gradient(to right, #aaa 33%, rgba(255,255,255,0) 0%);
+  background-position: bottom;
+  background-size: 15px 1px; /* Adjust for dash length and gap */
+  background-repeat: repeat-x;
+  margin: 0 10px;
+}
+
+.footer-multi span {
+  padding: 0 10px;
+}

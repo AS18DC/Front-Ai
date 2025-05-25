@@ -1,0 +1,54 @@
+<div class="container-visualizacion">
+  <div class="header-visualizacion">
+    <button class="export-button">Exportar</button>
+  </div>
+
+<div class="price-comparison-section">
+  <div class="price-header actual-header">Actual</div>
+  <div class="price-header prediccion-header">Predicción</div>
+  <ng-container *ngFor="let item of priceData">
+    <div class="price-item"> <span class="product-name">{{ item.name }}</span>
+      <div class="price-bar-container">
+        <span class="price actual-price">{{ item.actual }}</span>
+        <div class="bar actual-bar" [style.width]="item.actualWidth"></div>
+      </div>
+      <div class="price-bar-container">
+        <span class="price prediction-price">{{ item.prediction }}</span>
+        <div class="bar prediction-bar" [style.width]="item.predictionWidth"></div>
+      </div>
+      <span class="product-name-repeated">{{ item.productNameRepeated }}</span>
+    </div>
+  </ng-container>
+</div>
+
+  <div class="main-content-visualizacion">
+    <div class="search-table-section">
+      <div class="search-bar-container">
+        <input type="text" placeholder="Buscar un producto" class="search-input">
+        <button class="search-button-icon">🔍</button>
+      </div>
+<div class="product-list">
+  <div *ngFor="let producto of productList" class="product-list-item">
+    <span>{{ producto.name }}</span>
+    <img [src]="producto.icon" [alt]="producto.name" class="product-icon">
+    <button class="details-button" (click)="verDetalles(producto)">Ver detalles</button>
+  </div>
+</div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-header">
+        <span class="graph-title-main">Melon</span>
+      </div>
+      <div class="graph-content">
+        <img src="assets/graph-placeholder.png" alt="Graph Placeholder" class="graph-placeholder">
+        <div class="graph-legend">
+          <span class="legend-item"><span class="dot yellow-dot"></span> Ventas mayo pasado = 150k</span>
+          <span class="legend-item"><span class="dot purple-dot"></span> Ventas mayo nspro esperables = 130k</span>
+        </div>
+      </div>
+      <div class="graph-month">Mayo</div>
+      <button class="report-button">Reporte</button>
+    </div>
+  </div>
+</div>

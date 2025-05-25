@@ -1,0 +1,117 @@
+.container-cargar-datos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the top */
+  height: 100vh;
+  background-color: #e9e9e9;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.header-cargar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 40px; /* Space below the button */
+}
+
+.start-button {
+  background-color: #cce0ff; /* Light blue */
+  border: 1px solid #a9c5e7;
+  border-radius: 50%; /* Circular */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.start-button img {
+  width: 24px; /* Adjust icon size */
+  height: 24px;
+}
+
+.main-content-cargar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.title-cargar {
+  font-size: 2.5em; /* Larger title */
+  color: #555; /* Darker grey */
+  margin-bottom: 60px; /* More space below title */
+  font-weight: normal;
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: #f8f8f8; /* Light background for the "cylinder" */
+  padding: 20px;
+  border-radius: 10px; /* Slightly rounded corners for the container */
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 200px; /* Approximate width of the cylinder */
+  height: 120px; /* Approximate height of the cylinder */
+  justify-content: center;
+  position: relative; /* For positioning elements inside */
+}
+
+.file-upload-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #777;
+}
+
+.file-upload-label .ventas-icon {
+  width: 30px; /* Adjust icon size */
+  height: auto;
+  margin-bottom: 5px;
+  opacity: 0.7;
+}
+
+.file-upload-label span {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.file-upload-label .star-icon {
+  width: 20px; /* Adjust icon size */
+  height: auto;
+  position: absolute;
+  top: 10px; /* Position as in image */
+  right: 10px; /* Position as in image */
+  color: #ffcc00; /* Star color */
+}
+
+/* Hide the default file input */
+.file-upload-container input[type="file"] {
+  display: none;
+}
+
+.extra-data-input {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 25px; /* Rounded rectangle */
+  padding: 12px 20px;
+  font-size: 1em;
+  color: #555;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.extra-data-input::placeholder {
+  color: #aaa;
+}

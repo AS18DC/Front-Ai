@@ -1,0 +1,19 @@
+<div class="container-cargar-datos">
+  <div class="header-cargar">
+    <button class="start-button" (click)="navigateToVisualizacion()">
+      <img src="assets/iniciar-icon.png" alt="Iniciar"> </button>
+  </div>
+
+  <div class="main-content-cargar">
+    <h1 class="title-cargar">Cargar Datos</h1>
+
+    <div class="file-upload-container">
+      <label for="file-upload" class="file-upload-label">
+        <img src="assets/ventas-icon.png" alt="Ventas Icon" class="ventas-icon"> <span>ventas</span>
+        <img src="assets/star-icon.png" alt="Star Icon" class="star-icon"> </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)">
+    </div>
+
+    <input type="text" class="extra-data-input" placeholder="Escriba datos extras si gusta...">
+  </div>
+</div>
