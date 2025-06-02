@@ -6,7 +6,9 @@
   <div class="messages-container">
     <div *ngFor="let message of messages" 
          [class]="'message ' + (message.isUser ? 'user-message' : 'ai-message')">
-      <markdown class="message-content" [data]="message.text"></markdown>
+      <div class="message-content">
+        {{ message.text }}
+      </div>
     </div>
   </div>
   
