@@ -1,110 +1,79 @@
 <div class="chat-container">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <button class="new-chat-btn">
-        <span>✏️</span>
-        Nuevo Chat
-      </button>
-    </div>
-    
-    <div class="sidebar-section">
-      <h3>Chats</h3>
-      <div class="chat-item active">
-        <span>🤖</span>
-        Hoy
-      </div>
-      <div class="chat-item">
-        <span>📚</span>
-        Spanish Language Help
-      </div>
-    </div>
-    
-    <div class="sidebar-bottom">
-      <div class="user-profile">
-        <div class="user-avatar">A</div>
-        <span>all</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Header -->
-    <div class="chat-header">
-      <button class="model-selector">
-        <span>🤖</span>
-        llama3.2:latest
-        <span>⌄</span>
-      </button>
+  <div class="chat-content">
+    <!-- Encabezado Principal -->
+    <div class="main-header">
+      <h1 class="main-title">que día murio chavezz</h1>
     </div>
 
-    <!-- Messages Container -->
+    <!-- Contenedor de mensajes -->
     <div class="messages-container">
-      <!-- Suggestions (shown when no messages) -->
-      <div class="suggestions" *ngIf="messages.length === 0">
-        <div class="suggestions-header">
-          <div class="suggestions-title">llama3.2:latest</div>
-          <div class="suggestions-subtitle">¿Cómo puedo ayudarte hoy?</div>
+      <!-- Mensaje del Bot -->
+      <div class="bot-message-container">
+        <div class="bot-avatar">
+          🦙
         </div>
-        
-        <div class="suggestions-grid">
-          <div class="suggestion-card" (click)="sendSuggestion('Help me study')">
-            <div class="suggestion-title">Help me study</div>
-            <div class="suggestion-description">vocabulary for a college entrance exam</div>
-          </div>
-          <div class="suggestion-card" (click)="sendSuggestion('Give me ideas')">
-            <div class="suggestion-title">Give me ideas</div>
-            <div class="suggestion-description">for what to do with my kids' art</div>
-          </div>
-          <div class="suggestion-card" (click)="sendSuggestion('Overcome procrastination')">
-            <div class="suggestion-title">Overcome procrastination</div>
-            <div class="suggestion-description">give me tips</div>
-          </div>
+        <div class="message-content">
+          <p class="message-text">
+            Lo siento, pero no tengo información sobre una persona llamada 'Chavezz' o un evento relacionado con su muerte. Es posible que sea un nombre privado o que no esté registrado en fuentes públicas. Si puedes proporcionar más contexto o detalles sobre quién es Chavezz y qué día supuestamente murió, estaré encantado de ayudarte a encontrar información.
+          </p>
         </div>
       </div>
 
-      <!-- Messages -->
-      <div *ngFor="let message of messages" class="message-wrapper">
-        <div class="message" [class]="message.isUser ? 'user-message' : 'ai-message'">
-          <div class="message-avatar" [class]="message.isUser ? 'user-avatar-msg' : 'ai-avatar-msg'">
-            {{ message.isUser ? 'A' : '🤖' }}
-          </div>
-          <div class="message-content">
-            <markdown [data]="message.text"></markdown>
-            <div class="message-actions" *ngIf="!message.isUser">
-              <button class="action-btn" title="Copiar">📋</button>
-              <button class="action-btn" title="Regenerar">🔄</button>
-              <button class="action-btn" title="Me gusta">👍</button>
-              <button class="action-btn" title="No me gusta">👎</button>
-            </div>
-          </div>
-        </div>
+      <!-- Reacciones -->
+      <div class="reactions-container">
+        <div class="reaction-icon" title="Copiar">📋</div>
+        <div class="reaction-icon" title="Regenerar">🔄</div>
+        <div class="reaction-icon" title="Me gusta">👍</div>
+        <div class="reaction-icon" title="No me gusta">👎</div>
+        <div class="reaction-icon" title="Compartir">📤</div>
+        <div class="reaction-icon" title="Más opciones">⋯</div>
+      </div>
+
+      <!-- Sección Follow Up -->
+      <div class="follow-up-section">
+        <h3 class="follow-up-title">Follow up</h3>
+        <ul class="follow-up-list">
+          <li class="follow-up-item" style="--item-index: 0" (click)="sendSuggestion('¿Qué tipo de información te gustaría buscar?')">
+            <span class="follow-up-arrow">↳</span>
+            <span class="follow-up-text">¿Qué tipo de información te gustaría buscar?</span>
+          </li>
+          <li class="follow-up-item" style="--item-index: 1" (click)="sendSuggestion('Si no hay registros públicos, ¿hay alguna otra fuente que podrías verificar?')">
+            <span class="follow-up-arrow">↳</span>
+            <span class="follow-up-text">Si no hay registros públicos, ¿hay alguna otra fuente que podrías verificar?</span>
+          </li>
+          <li class="follow-up-item" style="--item-index: 2" (click)="sendSuggestion('Puedes darme un ejemplo de cómo puedo buscar información sobre una persona murió en específico?')">
+            <span class="follow-up-arrow">↳</span>
+            <span class="follow-up-text">Puedes darme un ejemplo de cómo puedo buscar información sobre una persona murió en específico?</span>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <!-- Chat Input -->
+    <!-- Barra de entrada de mensaje -->
     <div class="chat-input-container">
       <div class="chat-input-wrapper">
-        <textarea 
-          class="chat-input"
-          [(ngModel)]="newMessage" 
-          (keydown)="onKeyDown($event)"
-          placeholder="¿Cómo puedo ayudarte hoy?"
-          rows="1">
-        </textarea>
-        <button 
-          class="send-button" 
-          (click)="sendMessage()"
-          [disabled]="!newMessage.trim()">
-          ↑
-        </button>
-        
-        <div class="input-footer">
-          <button class="footer-button">
-            <span>📎</span>
-            Intérprete de Código
+        <div class="input-row">
+          <button class="attach-button" title="Adjuntar">
+            ➕
           </button>
+          <textarea 
+            class="chat-input"
+            [(ngModel)]="newMessage" 
+            (keydown)="onKeyDown($event)"
+            placeholder="Enviar un Mensaje"
+            rows="1">
+          </textarea>
+          <button class="code-interpreter-button">
+            Interpretar de Código
+          </button>
+          <div class="input-options">
+            <button class="input-option" title="Micrófono">
+              🎤
+            </button>
+            <button class="input-option" title="Teclado">
+              ⌨️
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ import { MarkdownModule } from 'ngx-markdown';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  messages: Array<{ text: string; isUser: boolean }> = [];
   newMessage: string = '';
   private webhookUrl: string = 'http://localhost:5678/webhook-test/220ead7c-cbc0-402a-9021-922973c441b4';
 
@@ -20,42 +19,11 @@ export class ChatComponent {
 
   sendMessage() {
     if (this.newMessage.trim()) {
-      // Añade el mensaje del usuario
-      this.messages.push({ text: this.newMessage, isUser: true });
-
-      const userMessage = this.newMessage;
+      console.log('Enviando mensaje:', this.newMessage);
+      
+      // Aquí puedes agregar la lógica para enviar el mensaje
+      // Por ahora solo limpiamos el input
       this.newMessage = '';
-
-      // Muestra un mensaje de "pensando"
-      this.messages.push({
-        text: "Estoy analizando los datos, dame un momento...",
-        isUser: false
-      });
-
-      // Haz la llamada HTTP POST
-      this.http.post(this.webhookUrl, { message: userMessage }, { responseType: 'text' })
-        .subscribe({
-          next: (response: any) => {
-            // Elimina el mensaje de "pensando"
-            this.messages = this.messages.filter(msg => msg.text !== "Estoy analizando los datos, dame un momento...");
-
-            response = response.replace(/</g, '<').replace(/>/g, '>');
-
-            this.messages.push({
-              text: response || "No se recibió una respuesta clara de la IA.",
-              isUser: false
-            });
-          },
-          error: (error) => {
-            console.error('Error al llamar al servicio de IA:', error);
-            this.messages = this.messages.filter(msg => msg.text !== "Estoy analizando los datos, dame un momento...");
-            
-            this.messages.push({
-              text: "Lo siento, hubo un error al conectar con la IA. Por favor, inténtalo de nuevo más tarde.",
-              isUser: false
-            });
-          }
-        });
     }
   }
 
