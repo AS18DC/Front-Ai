@@ -1,20 +1,112 @@
 <div class="chat-container">
-  <div class="chat-header">
-    <h2>AI Assistant</h2>
-  </div>
-  
-  <div class="messages-container">
-    <div *ngFor="let message of messages" 
-         [class]="'message ' + (message.isUser ? 'user-message' : 'ai-message')">
-      <markdown class="message-content" [data]="message.text"></markdown>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <button class="new-chat-btn">
+        <span>✏️</span>
+        Nuevo Chat
+      </button>
+    </div>
+    
+    <div class="sidebar-section">
+      <h3>Chats</h3>
+      <div class="chat-item active">
+        <span>🤖</span>
+        Hoy
+      </div>
+      <div class="chat-item">
+        <span>📚</span>
+        Spanish Language Help
+      </div>
+    </div>
+    
+    <div class="sidebar-bottom">
+      <div class="user-profile">
+        <div class="user-avatar">A</div>
+        <span>all</span>
+      </div>
     </div>
   </div>
-  
-  <div class="chat-input">
-    <input type="text" 
-           [(ngModel)]="newMessage" 
-           (keyup.enter)="sendMessage()"
-           placeholder="Type your message...">
-    <button (click)="sendMessage()">Send</button>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="chat-header">
+      <button class="model-selector">
+        <span>🤖</span>
+        llama3.2:latest
+        <span>⌄</span>
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="messages-container">
+      <!-- Suggestions (shown when no messages) -->
+      <div class="suggestions" *ngIf="messages.length === 0">
+        <div class="suggestions-header">
+          <div class="suggestions-title">llama3.2:latest</div>
+          <div class="suggestions-subtitle">¿Cómo puedo ayudarte hoy?</div>
+        </div>
+        
+        <div class="suggestions-grid">
+          <div class="suggestion-card" (click)="sendSuggestion('Help me study')">
+            <div class="suggestion-title">Help me study</div>
+            <div class="suggestion-description">vocabulary for a college entrance exam</div>
+          </div>
+          <div class="suggestion-card" (click)="sendSuggestion('Give me ideas')">
+            <div class="suggestion-title">Give me ideas</div>
+            <div class="suggestion-description">for what to do with my kids' art</div>
+          </div>
+          <div class="suggestion-card" (click)="sendSuggestion('Overcome procrastination')">
+            <div class="suggestion-title">Overcome procrastination</div>
+            <div class="suggestion-description">give me tips</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div *ngFor="let message of messages" class="message-wrapper">
+        <div class="message" [class]="message.isUser ? 'user-message' : 'ai-message'">
+          <div class="message-avatar" [class]="message.isUser ? 'user-avatar-msg' : 'ai-avatar-msg'">
+            {{ message.isUser ? 'A' : '🤖' }}
+          </div>
+          <div class="message-content">
+            <markdown [data]="message.text"></markdown>
+            <div class="message-actions" *ngIf="!message.isUser">
+              <button class="action-btn" title="Copiar">📋</button>
+              <button class="action-btn" title="Regenerar">🔄</button>
+              <button class="action-btn" title="Me gusta">👍</button>
+              <button class="action-btn" title="No me gusta">👎</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="chat-input-container">
+      <div class="chat-input-wrapper">
+        <textarea 
+          class="chat-input"
+          [(ngModel)]="newMessage" 
+          (keydown)="onKeyDown($event)"
+          placeholder="¿Cómo puedo ayudarte hoy?"
+          rows="1">
+        </textarea>
+        <button 
+          class="send-button" 
+          (click)="sendMessage()"
+          [disabled]="!newMessage.trim()">
+          ↑
+        </button>
+        
+        <div class="input-footer">
+          <button class="footer-button">
+            <span>📎</span>
+            Intérprete de Código
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
