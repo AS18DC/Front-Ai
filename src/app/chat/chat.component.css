@@ -195,8 +195,8 @@
 .brand-section {
   display: flex;
   flex-direction: column;
-  gap: 13vh;
-  margin-bottom: 3vh;
+  gap: 1vh;
+  margin-bottom: 3vh; 
 }
 
 .lyncross {
