@@ -8,13 +8,8 @@
   <div class="lyncross">Lyncross</div>
   <div class="bai">BAI Automation</div>
 
-  <div class="messages-container">
-    <div *ngFor="let message of messages" 
-         [class]="'message ' + (message.isUser ? 'user-message' : 'ai-message')">
-      <markdown class="message-content" [data]="message.text"></markdown>
-    </div>
-  </div>
-  
+
+  <div> 
   <div class="sidebar">
     <h3 class="sidebar-title">Predicciones Realizadas</h3>
     <ul class="sidebar-menu">
@@ -24,6 +19,14 @@
       <li class="sidebar-menu-item">ancla</li>
     </ul>
   </div>
+
+  <div class="messages-container">
+    <div *ngFor="let message of messages" 
+         [class]="'message ' + (message.isUser ? 'user-message' : 'ai-message')">
+      <markdown class="message-content" [data]="message.text"></markdown>
+    </div>
+  </div>
+</div>
 
   <div class="chat-input">
     <input type="text" class="message-input"
