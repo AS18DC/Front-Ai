@@ -181,7 +181,7 @@
   top: 0;
   left: 0;
   width: 35vh;
-  height: 8.6vh;
+  height: 98.6vh; 
   background: linear-gradient(to bottom, rgba(40, 40, 40, 0.95), rgba(20, 20, 20, 0.95));
   backdrop-filter: blur(10px);
   border-right: 2px solid rgba(169, 197, 231, 0.3);
