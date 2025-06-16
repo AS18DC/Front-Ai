@@ -1,67 +1,99 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importa HttpClient y HttpHeaders
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
+
+interface ChatMessage {
+  text: string;
+  isUser: boolean;
+  isThinking?: boolean;
+}
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, FormsModule, MarkdownModule], // HttpClientModule no se importa aquí si es standalone, se importa en app.config.ts o similar
+  imports: [CommonModule, FormsModule, MarkdownModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  messages: Array<{ text: string; isUser: boolean }> = [];
+  messages: ChatMessage[] = [];
   newMessage: string = '';
-  // Reemplaza con la URL real de tu webhook de IA
-  private webhookUrl: string = 'http://localhost:5678/webhook-test/220ead7c-cbc0-402a-9021-922973c441b4'; 
+  private webhookUrl: string = 'http://localhost:5678/webhook-test/220ead7c-cbc0-402a-9021-922973c441b4';
 
-  constructor(private http: HttpClient) { } // Inyecta HttpClient
+  constructor(private http: HttpClient) { }
 
   sendMessage() {
     if (this.newMessage.trim()) {
-      // Añade el mensaje del usuario
+      // Add user message
       this.messages.push({ text: this.newMessage, isUser: true });
 
-      const userMessage = this.newMessage; // Guarda el mensaje para enviarlo
-      this.newMessage = ''; // Limpia el input inmediatamente
+      const userMessage = this.newMessage;
+      this.newMessage = '';
 
-      // Prepara los headers para la solicitud JSON
+      // Add thinking animation message
+      const thinkingMessage: ChatMessage = {
+        text: '',
+        isUser: false,
+        isThinking: true
+      };
+      this.messages.push(thinkingMessage);
 
-      // Muestra un mensaje de "pensando" mientras esperas la respuesta de la IA
-      this.messages.push({
-        text: "Estoy analizando los datos, dame un momento...",
-        isUser: false
-      });
+      // Scroll to bottom to show thinking animation
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
 
-      // Haz la llamada HTTP POST a tu webhook
+      // Make HTTP call to webhook
       this.http.post(this.webhookUrl, { message: userMessage }, { responseType: 'text' })
         .subscribe({
           next: (response: any) => {
-            // Elimina el mensaje de "pensando" si quieres
-            this.messages = this.messages.filter(msg => msg.text !== "Estoy analizando los datos, dame un momento...");
+            // Remove thinking message
+            this.messages = this.messages.filter(msg => !msg.isThinking);
 
-            response = response.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            // Clean response text
+            response = response.replace(/</g, '<').replace(/>/g, '>');
 
-            // Asume que la respuesta tiene una propiedad 'reply' o 'text'
+            // Add AI response
             this.messages.push({
-              text: response || response.body || response.response.body || "No se recibió una respuesta clara de la IA.",
-              isUser: false
+              text: response || "No se recibió una respuesta clara de la IA.",
+              isUser: false,
+              isThinking: false
             });
-            console.log(response)
+
+            // Scroll to bottom to show new message
+            setTimeout(() => {
+              this.scrollToBottom();
+            }, 100);
+
+            console.log(response);
           },
           error: (error) => {
             console.error('Error al llamar al servicio de IA:', error);
-            // Elimina el mensaje de "pensando" si quieres
-            this.messages = this.messages.filter(msg => msg.text !== "Estoy analizando los datos, dame un momento...");
+            
+            // Remove thinking message
+            this.messages = this.messages.filter(msg => !msg.isThinking);
             
             this.messages.push({
               text: "Lo siento, hubo un error al conectar con la IA. Por favor, inténtalo de nuevo más tarde.",
-              isUser: false
+              isUser: false,
+              isThinking: false
             });
+
+            // Scroll to bottom
+            setTimeout(() => {
+              this.scrollToBottom();
+            }, 100);
           }
         });
+    }
+  }
+
+  private scrollToBottom(): void {
+    const messagesContainer = document.querySelector('.messages-container');
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
   }
 }

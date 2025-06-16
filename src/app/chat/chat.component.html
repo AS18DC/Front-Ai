@@ -1,42 +1,48 @@
-
 <div class="chat-container">
+  <!-- Left Sidebar Container with Complete Background -->
+  <div class="left-sidebar-container">
+    <div class="brand-section">
+      <div class="lyncross">Lyncross</div>
+      <div class="bai">BAI Automation</div>
+    </div>
 
-  <div class="chat-header">
-    <h2 class="chat-title">AI Multi Agentes</h2>
-  </div>
-
-  <div class="lyncross">Lyncross</div>
-  <div class="bai">BAI Automation</div>
-
-
-  <div> 
-
-<div class="padding-sidebar">
-  <div class="sidebar">
-    <h3 class="sidebar-title">Predicciones Realizadas</h3>
-    <ul class="sidebar-menu">
-      <li class="sidebar-menu-item">ancla</li>
-      <li class="sidebar-menu-item">ancla</li>
-      <li class="sidebar-menu-item">ancla</li>
-      <li class="sidebar-menu-item">ancla</li>
-    </ul>
-  </div>
-</div>
-
-  <div class="messages-container">
-    <div *ngFor="let message of messages" 
-         [class]="'message ' + (message.isUser ? 'user-message' : 'ai-message')">
-      <markdown class="message-content" [data]="message.text"></markdown>
+    <div class="sidebar">
+      <h3 class="sidebar-title">Predicciones Realizadas</h3>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">Predicción de Ventas - Enero</li>
+        <li class="sidebar-menu-item">Análisis de Calidad - Febrero</li>
+        <li class="sidebar-menu-item">Gestión de Inventario - Marzo</li>
+        <li class="sidebar-menu-item">Predicción de Producción - Abril</li>
+      </ul>
     </div>
   </div>
-</div>
 
-  <div class="chat-input">
-    <input type="text" class="message-input"
-           [(ngModel)]="newMessage" 
-           (keyup.enter)="sendMessage()"
-           placeholder="Type your message...">
-    <button (click)="sendMessage()">Send</button>
+  <div class="chat-content">
+    <div class="chat-header">
+      <h2 class="chat-title">AI Multi Agentes</h2>
+    </div>
+
+    <div class="messages-container">
+      <div *ngFor="let message of messages" 
+           [class]="'message ' + (message.isUser ? 'user-message' : message.isThinking ? 'thinking-message' : 'ai-message')">
+        <div *ngIf="message.isThinking" class="thinking-content">
+          <span>AI está pensando</span>
+          <div class="thinking-dots">
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+          </div>
+        </div>
+        <markdown *ngIf="!message.isThinking" class="message-content" [data]="message.text"></markdown>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" class="message-input"
+             [(ngModel)]="newMessage" 
+             (keyup.enter)="sendMessage()"
+             placeholder="Type your message...">
+      <button (click)="sendMessage()">Send</button>
+    </div>
   </div>
-
 </div>
