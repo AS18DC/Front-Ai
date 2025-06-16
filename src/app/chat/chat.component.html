@@ -1,10 +1,14 @@
 <div class="chat-container">
-  <!-- Left Sidebar Container with Complete Background -->
+  <!-- Background overlay for left sidebar area -->
+  <div class="left-sidebar-background"></div>
+  
+  <!-- Left Sidebar with Separate Boxes -->
   <div class="left-sidebar-container">
-    <div class="brand-section">
-      <div class="bai">AI Multi Agentes</div>
-    </div>
+    <!-- Brand boxes positioned like original design -->
+    <div class="lyncross">Lyncross</div>
+    <div class="bai">BAI Automation</div>
 
+    <!-- Main sidebar box -->
     <div class="sidebar">
       <h3 class="sidebar-title">Predicciones Realizadas</h3>
       <ul class="sidebar-menu">
@@ -17,7 +21,9 @@
   </div>
 
   <div class="chat-content">
-
+    <div class="chat-header">
+      <h2 class="chat-title">AI Multi Agentes</h2>
+    </div>
 
     <div class="messages-container">
       <div *ngFor="let message of messages" 

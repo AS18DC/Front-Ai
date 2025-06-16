@@ -175,62 +175,69 @@
   width: 20vh;
 }
 
-/* Left Sidebar Container - Complete Rectangle Background */
+/* Left Sidebar with Box Design - Respecting Original Layout */
 .left-sidebar-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 40vh;
-  height: 100vh; 
-  background: linear-gradient(to bottom, rgba(40, 40, 40, 0.95), rgba(20, 20, 20, 0.95));
-  backdrop-filter: blur(10px);
-  border-right: 2px solid rgba(169, 197, 231, 0.3);
+  height: 100vh;
   z-index: 3;
   display: flex;
   flex-direction: column;
   padding: 2vh;
   box-sizing: border-box;
+  /* Semi-transparent background for the entire left area */
+  background: linear-gradient(to bottom, rgba(20, 20, 20, 0.3), rgba(10, 10, 10, 0.3));
+  backdrop-filter: blur(5px);
 }
 
 .brand-section {
   display: flex;
   flex-direction: column;
   gap: 1vh;
-  margin-bottom: 3vh; 
+  margin-bottom: 3vh;
+  margin-top: 15vh; /* Align with the main header */
 }
 
 .lyncross {
-  background: linear-gradient(to bottom, #444, #333);
-  width: 90%;
+  background: linear-gradient(to bottom, #333, #222);
+  width: 7vh;
   padding: 1.5vh;
   border-radius: 2vh;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: 500;
+  margin-left: 2vh;
 }
 
 .bai {
-  background: linear-gradient(to bottom, #444, #333);
-  width: 90%;
+  background: linear-gradient(to bottom, #333, #222);
+  width: 14vh;
   padding: 1.5vh;
   border-radius: 2vh;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-size: 1.1em;
+  font-size: 0.8em;
   font-weight: 500;
+  margin-left: 16vh;
+  margin-top: -5.1vh;
 }
 
 .sidebar {
-  flex: 1;
-  background: linear-gradient(to bottom, rgba(51, 51, 51, 0.8), rgba(34, 34, 34, 0.8));
+  height: 60vh;
+  width: 27vh;
+  background: linear-gradient(to bottom, #333, #222);
   color: #fff;
   padding: 2vh;
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  margin-left: 3vh;
   border-radius: 2vh;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin-top: 5vh;
 }
 
 .sidebar-title {
@@ -248,21 +255,38 @@
 
 .sidebar-menu-item {
   margin-bottom: 12px;
-  padding: 12px 8px;
+  padding: 8px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 8px;
+  transition: background-color 0.3s ease;
   color: #ccc;
+  font-size: 0.9em;
 }
 
 .sidebar-menu-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
   color: #fff;
-  transform: translateX(5px);
 }
 
 .sidebar-menu-item:not(:last-child) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 12px;
   margin-bottom: 12px;
+}
+
+/* Background overlay for the left sidebar area */
+.left-sidebar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40vh;
+  height: 100vh;
+  background: linear-gradient(to right, 
+    rgba(20, 20, 20, 0.8) 0%, 
+    rgba(20, 20, 20, 0.6) 70%, 
+    rgba(20, 20, 20, 0.2) 90%, 
+    transparent 100%);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  pointer-events: none;
 }
