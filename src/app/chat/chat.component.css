@@ -21,6 +21,7 @@
   bottom: 0;
   background-color: rgba(104, 97, 97, 0.2);
   z-index: 1;
+  pointer-events: none; /* Añade esta línea */
 }
 
 .chat-content {
@@ -44,6 +45,7 @@
   width: 20vh;
   border-bottom-right-radius: 3vh;
   border-bottom-left-radius: 3vh;
+  
 }
 
 .chat-title {
